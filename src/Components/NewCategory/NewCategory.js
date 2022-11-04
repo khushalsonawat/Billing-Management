@@ -6,7 +6,6 @@ import { categoryActions } from '../../store/category-slice';
 const NewCategory = () => {
   const [adding, setAdding] = useState(false);
   const totalCategories = useSelector(state => state.category.totalCategories);
-  const [tag, setTag] = useState("");
   const dispatch = useDispatch();
   const [element, setElement] = useState({
     id: totalCategories + 1,
@@ -18,6 +17,10 @@ const NewCategory = () => {
     dispatch(categoryActions.addCategory({
       ...element
     }));
+    setElement({
+      id: totalCategories + 1,
+      tag: "",
+    })
   }
 
   const handleChange = (e) => {

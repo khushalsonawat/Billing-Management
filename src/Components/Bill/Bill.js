@@ -36,7 +36,7 @@ const Bill = (props) => {
             id: id,
         }));
     }
-    return (
+    return (<>
         <div className='bill-card'>
             {editing ? <IoMdClose size={"25px"} onClick={() => setEditing(false)} /> :
                 <HiPencilAlt size={"25px"} onClick={() => setEditing(true)} />}
@@ -47,15 +47,14 @@ const Bill = (props) => {
             <select name="category" value={state.category} disabled={!editing} onChange={handleChange}>
                 {categories.map((category) => {
                     return (
-                        <option value={category.tag}>{category.tag}</option>
+                        <option key={category.id} value={category.tag}>{category.tag}</option>
                     )
                 })}
             </select>
-            {/* <input type="text" name="category" value={state.category} disabled={!editing} onChange={handleChange} /> */}
-
             {editing ? <button onClick={handleSubmit}>Save</button> : <></>}
         </div>
+    </>
     )
 }
 
-export default Bill
+export default Bill;

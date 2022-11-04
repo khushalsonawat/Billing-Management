@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { billActions } from "../../store/bill-slice";
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-// import 
-
 const NewBill = () => {
   const dispatch = useDispatch();
-  const numberOfBill = useSelector(state => state.bill.totalBills);
+  let numberOfBill = useSelector(state => state.bill.totalBills);
   const categories = useSelector(state => state.category.categoryList);
+  const dropdown = useRef();
 
   const [state, setState] = useState({
     id: numberOfBill + 1,
@@ -23,18 +22,20 @@ const NewBill = () => {
     dispatch(billActions.addBill({
       ...state,
     }));
+    numberOfBill += 1;
+    dropdown.current.value = "";
     setState({
+      id: numberOfBill + 1,
       amount: 0,
-      category: "",
     })
   }
 
   const handleChange = (e) => {
+    console.log(e.target.name);
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
-    console.log(state.tag);
   }
 
   return (
@@ -56,10 +57,10 @@ const NewBill = () => {
       >
         {({ isSubmitting }) => (
           <Form onSubmit={addBill}>
-            <Field type="integer" name="amount" value={state.amount} onChange={handleChange} />
+            <Field type="number" name="amount" value={state.amount} onChange={handleChange} />
             <ErrorMessage name="amount" component="div" />
-            <Field as="select" name="category" value={state.category} onChange={handleChange} >
-              <option selected disabled>Choose here</option>
+            <Field as="select" ref={dropdown} name="category" required value={state.category} onChange={handleChange}>
+              <option value={""} selected disabled hidden>Choose here</option>
               {categories.map((category) => {
                 return (
                   <option key={category.id} value={category.tag}>{category.tag}</option>

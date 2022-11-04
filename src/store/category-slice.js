@@ -5,6 +5,7 @@ const categorySlice = createSlice({
     initialState: {
         categoryList: [],
         totalCategories: 0,
+        filterCategoryName: "",
     },
     reducers: {
         addCategory(state, action) {
@@ -22,6 +23,9 @@ const categorySlice = createSlice({
         updateCategory(state, action) {
             const element = state.categoryList.find((category) => category.id === action.payload.id);
             element.tag = action.payload.tag;
+        },
+        filterCategory(state, action) {
+            state.filterCategoryName = action.payload;
         }
     }
 });
