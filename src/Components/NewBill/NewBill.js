@@ -10,6 +10,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 const NewBill = () => {
   const dispatch = useDispatch();
   const numberOfBill = useSelector(state => state.bill.totalBills);
+  const categories = useSelector(state => state.category.categoryList);
+
   const [state, setState] = useState({
     id: numberOfBill + 1,
     category: "",
@@ -30,8 +32,9 @@ const NewBill = () => {
   const handleChange = (e) => {
     setState({
       ...state,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     });
+    console.log(state.tag);
   }
 
   return (
@@ -40,8 +43,8 @@ const NewBill = () => {
         initialValues={state}
         validate={values => {
           const errors = {};
-          if (!values.category) {
-            errors.category = 'Required';
+          if (!values.amount) {
+            errors.amount = 'Required';
           }
           return errors;
         }}
@@ -55,7 +58,14 @@ const NewBill = () => {
           <Form onSubmit={addBill}>
             <Field type="integer" name="amount" value={state.amount} onChange={handleChange} />
             <ErrorMessage name="amount" component="div" />
-            <Field type="text" name="category" value={state.category} onChange={handleChange} />
+            <Field as="select" name="category" value={state.category} onChange={handleChange} >
+              <option selected disabled>Choose here</option>
+              {categories.map((category) => {
+                return (
+                  <option key={category.id} value={category.tag}>{category.tag}</option>
+                )
+              })}
+            </Field>
             <ErrorMessage name="category" component="div" />
             <button type="submit" disabled={isSubmitting}>
               Add Bill

@@ -11,7 +11,6 @@ const billSlice = createSlice({
         addBill(state, action) {
             const newBill = action.payload;
             state.billList.push(newBill);
-            console.log(state.billList);
             ++state.totalBills;
         },
         removeBill(state, action) {
