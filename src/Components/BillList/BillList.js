@@ -3,12 +3,12 @@ import Bill from "../Bill/Bill";
 import { useSelector } from 'react-redux';
 
 const BillList = () => {
-  const bills = useSelector(state => state.bill.BillList);
+  const bills = useSelector(state => state.bill.billList);
   return (
     <>
-      {bills && bills.map((bill) => {
+      {bills.map((bill) => {
         return (
-          <Bill amount={bill.amount} category={bill.category} />
+          <Bill key={bill.id} id={bill.id} amount={bill.amount} category={bill.category} />
         )
       })}
     </>
