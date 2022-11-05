@@ -49,6 +49,9 @@ const billSlice = createSlice({
                 }
                 state.billList = result;
             } else {
+                if (JSON.parse(localStorage.getItem("bills")) === null) {
+                    localStorage.setItem("bills", JSON.stringify(initialBills.bills));
+                }
                 state.billList = JSON.parse(localStorage.getItem("bills"));
             }
         }

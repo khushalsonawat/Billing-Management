@@ -1,11 +1,12 @@
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from "chart.js";
 import "./Chart.css";
+import { initialBills } from "../../utils"
 
 ChartJS.register(...registerables);
 
 const Chart = () => {
-    const state = JSON.parse(localStorage.getItem("bills"));
+    const state = JSON.parse(localStorage.getItem("bills")) ? JSON.parse(localStorage.getItem("bills")) : initialBills.bills
     let arr = state.slice();
     arr.sort(function (a, b) {
         if (a.date > b.date) {

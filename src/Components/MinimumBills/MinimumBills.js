@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { billActions } from '../../store/bill-slice';
 
 const MinimumBills = () => {
-    const [state, setState] = useState(0);
+    const [state, setState] = useState();
     const [editing, setEditing] = useState(true);
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
@@ -17,7 +17,7 @@ const MinimumBills = () => {
         <div>
             <span>Monthly Budget</span>
             <form onSubmit={handleSubmit}>
-                <input type="number" value={state} disabled={!editing} onChange={(e) => setState(e.target.value)} />
+                <input type="number" required value={state} disabled={!editing} onChange={(e) => setState(e.target.value)} />
                 <button type="submit">Update</button>
             </form>
             <button onClick={() => {
