@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from "chart.js";
 import "./Chart.css";
@@ -6,7 +5,7 @@ import "./Chart.css";
 ChartJS.register(...registerables);
 
 const Chart = () => {
-    const state = useSelector(state => state.bill.billList);
+    const state = JSON.parse(localStorage.getItem("bills"));
     let arr = state.slice();
     arr.sort(function (a, b) {
         if (a.date > b.date) {
@@ -26,7 +25,8 @@ const Chart = () => {
         ]
     }
     return (
-        <div className="chart-wrapper">
+        <div >
+            Time Series Chart:
             <Line
                 data={data}
             />

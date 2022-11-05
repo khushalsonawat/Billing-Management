@@ -1,6 +1,7 @@
 import React from 'react';
 import Bill from "../Bill/Bill";
 import { useSelector } from 'react-redux';
+import "./BillList.css";
 
 const BillList = () => {
   const bills = useSelector(state => state.bill.billList);
@@ -10,14 +11,16 @@ const BillList = () => {
       <>
         {bills && bills.map((bill) => {
           return (
-            <Bill key={bill.id} id={bill.id} amount={bill.amount} category={bill.category} date={bill.date} description={bill.description} />
+            <div key={bill.id} className="section_bill_view">
+              <Bill id={bill.id} amount={bill.amount} category={bill.category} date={bill.date} description={bill.description} />
+            </div>
           )
         })}
       </>
     )
   }
   return (
-    <>
+    <div className="section_bill_view">
       {bills.map((bill) => {
         if (bill.category === categoryFilter) {
           return (
@@ -27,7 +30,7 @@ const BillList = () => {
         return (<div key={bill.id}>
         </div>);
       })}
-    </>
+    </div>
   )
 }
 

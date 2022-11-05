@@ -1,0 +1,14 @@
+.section_bill_view {
+    width: 100%;
+    margin: 1rem;
+    display: grid;
+    row-gap: 2rem;
+    justify-content: space-between;
+    padding: 0em;
+}
+
+@media screen and (min-width:768px) {
+    .section_bill_view {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

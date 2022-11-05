@@ -32,10 +32,10 @@ const NewCategory = () => {
 
   if (!adding) {
     return (
-      <>
-        <AiOutlinePlus onClick={() => setAdding(true)} />
-        Add Category
-      </>
+      <button style={{ height: "25px" }} onClick={() => setAdding(true)}>
+        <AiOutlinePlus />
+        Add New Category
+      </button>
     )
   }
   return (

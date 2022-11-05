@@ -1,0 +1,11 @@
+.bill-card {
+    margin-right: 1rem;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    transition: 1s;
+    flex-wrap: wrap;
+    box-shadow: 0 0 0.5em rgb(76, 76, 76);
+}

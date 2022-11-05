@@ -58,10 +58,11 @@ const Bill = (props) => {
                 deleteBill(props.id)
             }
             } />
-            <span>Amount:</span>
+            <br />
+            <span>Amount:</span><br />
             <input type="text" name="amount" value={state.amount} disabled={!editing} onChange={handleChange} />
             <br />
-            <span>Category:</span>
+            <span>Category:</span><br />
             <select name="category" value={state.category} disabled={!editing} onChange={handleChange}>
                 {categories.map((category) => {
                     return (
@@ -70,10 +71,10 @@ const Bill = (props) => {
                 })}
             </select>
             <br />
-            <span>Description</span>
+            <span>Description:</span><br />
             <input type="text" name="description" value={state.description} disabled={!editing} onChange={handleChange} />
             <br />
-            <span>Date</span>
+            <span>Date:</span><br />
             <input type="date" name="date" value={state.date} disabled={!editing} onChange={handleChange} />
             {editing ? <button onClick={handleSubmit}>Save</button> : <></>}
         </div>

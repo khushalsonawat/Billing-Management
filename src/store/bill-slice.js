@@ -19,7 +19,6 @@ const billSlice = createSlice({
         removeBill(state, action) {
             state.billList = state.billList.filter((bill) => bill.id !== action.payload.id);
             state.totalBills--;
-            console.log(state.billList);
             localStorage.setItem("bills", JSON.stringify(state.billList));
         },
         updateBill(state, action) {

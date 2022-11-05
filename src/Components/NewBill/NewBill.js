@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import "./NewBill.css";
 
 const NewBill = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const NewBill = () => {
   }
 
   return (
-    <div className='bill-card'>
+    <div className='bill-card section_bill_view'>
       <Formik
         initialValues={state}
         validate={values => {
