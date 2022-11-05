@@ -16,15 +16,19 @@ const Bill = (props) => {
         id: props.id,
         amount: props.amount,
         category: props.category,
+        description: props.description,
+        date: props.date,
     });
 
     const handleChange = (e) => {
+        e.preventDefault();
         setState({
             ...state,
             [e.target.name]: e.target.value,
         });
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         setEditing(false);
         dispatch(billActions.updateBill({
             ...state
@@ -36,14 +40,28 @@ const Bill = (props) => {
             id: id,
         }));
     }
+
     return (<>
         <div className='bill-card'>
-            {editing ? <IoMdClose size={"25px"} onClick={() => setEditing(false)} /> :
-                <HiPencilAlt size={"25px"} onClick={() => setEditing(true)} />}
-            <MdDelete size={"25px"} onClick={() => deleteBill(props.id)} />
-            <h3>Amount:</h3>
+            {editing ? <IoMdClose size={"25px"} onClick={(e) => {
+                e.preventDefault();
+                setEditing(false)
+            }
+            } /> :
+                <HiPencilAlt size={"25px"} onClick={(e) => {
+                    e.preventDefault();
+                    setEditing(true)
+                }
+                } />}
+            <MdDelete size={"25px"} onClick={(e) => {
+                e.preventDefault();
+                deleteBill(props.id)
+            }
+            } />
+            <span>Amount:</span>
             <input type="text" name="amount" value={state.amount} disabled={!editing} onChange={handleChange} />
-            <h3>Category:</h3>
+            <br />
+            <span>Category:</span>
             <select name="category" value={state.category} disabled={!editing} onChange={handleChange}>
                 {categories.map((category) => {
                     return (
@@ -51,6 +69,12 @@ const Bill = (props) => {
                     )
                 })}
             </select>
+            <br />
+            <span>Description</span>
+            <input type="text" name="description" value={state.description} disabled={!editing} onChange={handleChange} />
+            <br />
+            <span>Date</span>
+            <input type="date" name="date" value={state.date} disabled={!editing} onChange={handleChange} />
             {editing ? <button onClick={handleSubmit}>Save</button> : <></>}
         </div>
     </>

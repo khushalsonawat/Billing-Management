@@ -13,8 +13,10 @@ const NewBill = () => {
 
   const [state, setState] = useState({
     id: numberOfBill + 1,
+    description: "",
     category: "",
     amount: 0,
+    date: "",
   });
 
   const addBill = (e) => {
@@ -22,11 +24,15 @@ const NewBill = () => {
     dispatch(billActions.addBill({
       ...state,
     }));
+
     numberOfBill += 1;
     dropdown.current.value = "";
+
     setState({
       id: numberOfBill + 1,
       amount: 0,
+      description: "",
+      date: "",
     })
   }
 
@@ -57,9 +63,9 @@ const NewBill = () => {
       >
         {({ isSubmitting }) => (
           <Form onSubmit={addBill}>
-            <Field type="number" name="amount" value={state.amount} onChange={handleChange} />
+            <Field type="number" name="amount" required value={state.amount} onChange={handleChange} />
             <ErrorMessage name="amount" component="div" />
-            <Field as="select" ref={dropdown} name="category" required value={state.category} onChange={handleChange}>
+            <Field as="select" innerRef={dropdown} name="category" required value={state.category} onChange={handleChange}>
               <option value={""} selected disabled hidden>Choose here</option>
               {categories.map((category) => {
                 return (
@@ -68,6 +74,8 @@ const NewBill = () => {
               })}
             </Field>
             <ErrorMessage name="category" component="div" />
+            <Field type="text" name="description" placeholder='Description' value={state.description} onChange={handleChange} />
+            <Field type="date" name="date" required placeholder="Date" value={state.date} onChange={handleChange} />
             <button type="submit" disabled={isSubmitting}>
               Add Bill
             </button>
