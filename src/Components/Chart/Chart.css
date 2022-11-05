@@ -1,0 +1,9 @@
+.chart-wrapper,
+canvas {
+    margin: auto;
+    max-width: 1250px;
+}
+
+.chart-wrapper {
+    margin-top: 50px;
+}
