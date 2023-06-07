@@ -7,10 +7,12 @@ import "./Header.css";
 const Header = () => {
     return (
         <div className="header-wrapper">
-            <Filter />
-            <NewCategory />
+            <div className="filtersAndCatergories">
+                <Filter />
+                <NewCategory />
+            </div >
             <MinimumBills />
-        </div >
+        </div>
     )
 }
 

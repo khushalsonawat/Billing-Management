@@ -15,7 +15,7 @@ const MinimumBills = () => {
     }
     return (
         <div>
-            <span>Monthly Budget</span>
+            <span>Monthly Budget</span> &nbsp;
             <form onSubmit={handleSubmit}>
                 <input type="number" required value={state} disabled={!editing} onChange={(e) => setState(e.target.value)} />
                 <button type="submit">Update</button>

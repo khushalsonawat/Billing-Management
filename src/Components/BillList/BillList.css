@@ -1,10 +1,14 @@
 .section_bill_view {
     width: 100%;
-    margin: 1rem;
     display: grid;
     row-gap: 2rem;
-    justify-content: space-between;
-    padding: 0em;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media screen and (min-width:768px) {

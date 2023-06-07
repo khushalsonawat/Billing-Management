@@ -45,8 +45,8 @@ const NewBill = () => {
     });
   }
 
-  return (
-    <div className='bill-card section_bill_view'>
+  return (<div className="card">
+    <div className='new-bill-card section_bill_view'>
       <Formik
         initialValues={state}
         validate={values => {
@@ -84,6 +84,7 @@ const NewBill = () => {
         )}
       </Formik>
     </div>
+  </div>
   )
 }
 

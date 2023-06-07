@@ -11,7 +11,7 @@ const BillList = () => {
       <>
         {bills && bills.map((bill) => {
           return (
-            <div key={bill.id} className="section_bill_view">
+            <div key={bill.id} className="card">
               <Bill id={bill.id} amount={bill.amount} category={bill.category} date={bill.date} description={bill.description} />
             </div>
           )
@@ -20,7 +20,7 @@ const BillList = () => {
     )
   }
   return (
-    <div className="section_bill_view">
+    <>
       {bills.map((bill) => {
         if (bill.category === categoryFilter) {
           return (
@@ -30,7 +30,7 @@ const BillList = () => {
         return (<div key={bill.id}>
         </div>);
       })}
-    </div>
+    </>
   )
 }
 

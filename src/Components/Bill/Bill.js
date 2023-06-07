@@ -59,6 +59,7 @@ const Bill = (props) => {
             }
             } />
             <br />
+            <br />
             <span>Amount:</span><br />
             <input type="text" name="amount" value={state.amount} disabled={!editing} onChange={handleChange} />
             <br />
@@ -76,7 +77,10 @@ const Bill = (props) => {
             <br />
             <span>Date:</span><br />
             <input type="date" name="date" value={state.date} disabled={!editing} onChange={handleChange} />
-            {editing ? <button onClick={handleSubmit}>Save</button> : <></>}
+            <br />
+            <div className="saveButton">
+                {editing ? <button onClick={handleSubmit}>Save</button> : <></>}
+            </div>
         </div>
     </>
     )
